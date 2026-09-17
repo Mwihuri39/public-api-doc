@@ -443,15 +443,15 @@
                               "retail-media/experimental/docs/line-item-targets",
                               "retail-media/experimental/docs/line-item-creatives",
                               "retail-media/experimental/docs/line-item-products",
-                              "retail-media/experimental/docs/line-item-submit"
+                              "retail-media/experimental/docs/line-item-submit",
+                              "retail-media/experimental/docs/bidding-strategy-settings",
+                              "retail-media/experimental/docs/minimum-bid-details"
                             ]
                           },
                           {
                             "group": "Onsite Display (Legacy)",
                             "root": "retail-media/experimental/docs/onsite-display-line-items",
-                            "pages": [
-                              "retail-media/experimental/docs/bidding-strategy-settings"
-                            ]
+                            "pages": []
                           },
                           {
                             "group": "Sponsored Products (Legacy)",
