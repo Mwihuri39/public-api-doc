@@ -687,11 +687,6 @@
                         "root": "retail-media/v2026-preview/docs/line-items",
                         "pages": [
                           {
-                            "group": "Onsite Display Line Items",
-                            "root": "retail-media/v2026-preview/docs/onsite-display-line-items",
-                            "pages": []
-                          },
-                          {
                             "group": "Onsite Sponsored Products",
                             "root": "retail-media/v2026-preview/docs/onsite-sponsored-products",
                             "pages": [
