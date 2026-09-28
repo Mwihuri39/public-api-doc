@@ -13,6 +13,10 @@ Clients should inspect the `errors` array even when the endpoint returns `200 OK
 
 The Create Targets endpoint creates `ManualKeyword`, `PageType`, and `Category` targets for a line item. The Update Targets endpoint updates those targets in bulk.
 
+<Note>
+  `Geography` targets are supported by the API but not yet documented here.
+</Note>
+
 ***
 
 ## Targeting types
@@ -36,7 +40,7 @@ Create and Update requests can contain up to 100 targets, may mix target types, 
 
 | Target type | Details object | Attributes and options |
 | :---------- | :------------- | :--------------------- |
-| `ManualKeyword` | `manualKeywordTargetDetails` | `keywordInput` (string): manual keyword used for targeting. `matchType` (enum): `Exact`, or `Broad` for a negative target. |
+| `ManualKeyword` | `manualKeywordTargetDetails` | `keywordInput` (string): manual keyword used for targeting. `matchType` (enum): `Exact` or `Broad`. |
 | `PageType` | `pageTypeTargetDetails` | `pageType` (enum): `Unknown`, `Search`, `Home`, `Browse`, `Checkout`, `Category`, `ProductDetail`, `Confirmation`, `Merchandising`, `Deals`, `Favorites`, `SearchBar`, `CategoryMenu`, or `AiAssistant`. |
 | `Category` | `categoryTargetDetails` | `categoryId` (string): category used for targeting. `includeChildren` (boolean): whether the target includes child categories. |
 
