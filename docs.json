@@ -449,11 +449,6 @@
                             ]
                           },
                           {
-                            "group": "Onsite Display (Legacy)",
-                            "root": "retail-media/experimental/docs/onsite-display-line-items",
-                            "pages": []
-                          },
-                          {
                             "group": "Sponsored Products (Legacy)",
                             "root": "retail-media/experimental/docs/onsite-sponsored-products",
                             "pages": [
