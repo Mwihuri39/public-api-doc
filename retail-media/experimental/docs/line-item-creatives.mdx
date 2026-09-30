@@ -42,16 +42,16 @@ The resource `type` is `LineItemCreatives`.
 | Attribute | Description |
 | --- | --- |
 | `mediaType` | The line item's media type. Possible values are `Display`, `Video` or `null`. Creatives associated to the line item match this value. |
-| `lineItemCreatives` | Creatives associated with the line item. The array is empty when the line item has no creatives. |
-| `lineItemCreatives[].creative.id` | ID of the creative. |
-| `lineItemCreatives[].creative.modifiedAt` | Indicates when the associated creative revision was created. |
-| `lineItemCreatives[].approvalStatus` | Approval status of the creative. Possible values are `Unknown`, `Approved`, `AutoApproved`, `InReview`, `Rejected`, `AutoRejected`, and `Unsubmitted`. |
-| `lineItemCreatives[].creativePreviewCode` | Creative Live Demo preview code. It is `null` when a preview code is not available. |
-| `lineItemCreatives[].creativeProductCollections` | Ordered creative product collections. |
-| `lineItemCreatives[].creativeProductCollections[].isMandatory` | Whether the collection is mandatory for serving. |
-| `lineItemCreatives[].creativeProductCollections[].products` | Ordered products in the collection. |
-| `lineItemCreatives[].creativeProductCollections[].products[].id` | ID of the product. |
-| `lineItemCreatives[].creativeProductCollections[].products[].approvalStatus` | Approval status of the product. Possible values are `Unknown`, `Approved`, `AutoApproved`, `InReview`, `Rejected`, `AutoRejected`, and `Unsubmitted`. |
+| `creatives` | Creatives associated with the line item. The array is empty when the line item has no creatives. |
+| `creatives[].creative.id` | ID of the creative. |
+| `creatives[].creative.modifiedAt` | Indicates when the associated creative revision was created. |
+| `creatives[].approvalStatus` | Approval status of the creative. Possible values are `Unknown`, `Approved`, `AutoApproved`, `InReview`, `Rejected`, `AutoRejected`, and `Unsubmitted`. |
+| `creatives[].creativePreviewCode` | Creative Live Demo preview code. It is `null` when a preview code is not available. |
+| `creatives[].creativeProductCollections` | Ordered creative product collections. |
+| `creatives[].creativeProductCollections[].isMandatory` | Whether the collection is mandatory for serving. |
+| `creatives[].creativeProductCollections[].products` | Ordered products in the collection. |
+| `creatives[].creativeProductCollections[].products[].id` | ID of the product. |
+| `creatives[].creativeProductCollections[].products[].approvalStatus` | Approval status of the product. Possible values are `Unknown`, `Approved`, `AutoApproved`, `InReview`, `Rejected`, `AutoRejected`, and `Unsubmitted`. |
 
 
 
@@ -66,7 +66,7 @@ A successful response returns a `200 OK`.
         "type": "LineItemCreatives",
         "attributes": {
           "mediaType": "Display",
-          "lineItemCreatives": [
+          "creatives": [
             {
               "creative": {
                 "id": "creative-a",
@@ -108,7 +108,7 @@ When the line item has no associated creatives, `lineItemCreatives` is empty and
         "type": "LineItemCreatives",
         "attributes": {
           "mediaType": null,
-          "lineItemCreatives": []
+          "creatives": []
         }
       }
     }
@@ -132,7 +132,7 @@ For example, the response below contains approved and proposed revisions of the 
         "type": "LineItemCreatives",
         "attributes": {
           "mediaType": "Video",
-          "lineItemCreatives": [
+          "creatives": [
             {
               "creative": {
                 "id": "creative-a",
