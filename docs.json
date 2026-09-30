@@ -2400,10 +2400,6 @@
               "mcp/docs/access-flows",
               "mcp/docs/mcp-troubleshooting",
               {
-                "group": "Performance Media",
-                "pages": []
-              },
-              {
                 "group": "Retail Media",
                 "pages": [
                   "mcp/docs/retail-media/example-workflows",
