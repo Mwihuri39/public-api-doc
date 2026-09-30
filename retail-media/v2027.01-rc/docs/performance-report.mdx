@@ -256,8 +256,8 @@ For the full list of status and error codes for this endpoint — including `404
 | `searchTerm` | Keyword or phrase searched by the shopper on the retailer site. |
 | `searchTermType` | Match type: `Entered`, `Searched`, or `Unknown`. |
 | `searchTermTargeting` | Targeting strategy — see note below. |
-| `creativeId` | External creative ID — the same ID shown in the UI and returned by the creatives endpoints. Onsite display only. |
-| `legacyCreativeId` | Internal creative ID (the value previously returned in `creativeId`). **To be decommissioned** — migrate to `creativeId`. Onsite display only. |
+| `creativeId` | Creative ID, matching the creative IDs shown in the UI and returned by the creatives endpoints. Onsite display only. |
+| `legacyCreativeId` | Legacy creative ID. **To be decommissioned** — use `creativeId` instead. Onsite display only. |
 | `creativeName` | Creative name. Onsite display only. |
 | `creativeType` | Creative type: Commerce Display, Commerce Video, Standard Display, Standard Video. Onsite display only. |
 | `creativeTemplateId` | Creative template ID. Onsite display only. |
@@ -265,7 +265,7 @@ For the full list of status and error codes for this endpoint — including `404
 | `targetedKeywordType` | Conquesting strategy: `Conquesting`, `Branded`, or `Generic`. Returns `null` when not applicable. |
 
 <Warning>
-  **`creativeId` now returns external creative IDs.** Starting in this version, `creativeId` returns the external creative ID instead of the internal one, so it matches the UI and the creatives endpoints. If you rely on the internal ID, request `legacyCreativeId` instead. `legacyCreativeId` is scheduled to be decommissioned, so plan to move to `creativeId`.
+  **`creativeId` values have changed.** Starting in this version, `creativeId` returns the same creative IDs available in the UI and from the creatives endpoints, so report data can be matched directly to your creatives. The previous values are temporarily available in `legacyCreativeId`, which is scheduled to be decommissioned.
 </Warning>
 
 <Note>
