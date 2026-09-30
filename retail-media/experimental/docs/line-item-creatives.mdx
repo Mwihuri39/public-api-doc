@@ -423,12 +423,9 @@ The resource `type` is `Creatives`.
 
 ### Sample responses
 
-When all requested creative associations are removed without warnings, the endpoint returns `204 No Content`.
-```
-(no content)
-```
+A successful delete returns `200 OK`.
 
-When one or more creative IDs are not associated with the line item, the endpoint returns `200 OK` with a warning for each unmatched ID. The matching associations are still removed.
+When one or more creative IDs are not associated with the line item, the response includes a warning for each unmatched ID. Matching associations are still removed.
 
 <Accordion title="Example response (200)">
 

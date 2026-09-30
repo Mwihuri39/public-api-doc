@@ -159,9 +159,9 @@ The resource `type` is `Products`. Unlike the add operation, products are suppli
 
 - Removal is a soft delete. The product's status becomes `Removed` and the line item stops promoting it. The product is not erased, and it remains in your account catalog.
 - Products are removed from both the current line item and its proposal, so a pending change set stays consistent with the live one.
-- The operation is idempotent. Removing a `productId` that is not in the product pool succeeds and removes nothing for that ID. It is not reported as an error, and repeating the same request has no further effect.
+- The operation is idempotent. Removing a `productId` that is not in the product pool succeeds, removes nothing for that ID, and is reported as a warning. Repeating the same request has no further effect.
 - Duplicate `productId` values within the same request are deduplicated. Each product is removed once.
-- Validation is all-or-nothing. If any `productId` is malformed or unknown to the catalog, or the request exceeds 1500 IDs, the entire request is rejected and the product pool is left unchanged.
+- Validation is all-or-nothing. If any `productId` is malformed, or the request exceeds 1500 IDs, the entire request is rejected and the product pool is left unchanged.
 - Products are removed from the product pool only. They are not yet removed from Creative Product Collections that reference them; that behavior will follow.
 - Removing every product from a line item is allowed. The line item may stop being served as a result.
 
