@@ -3327,6 +3327,38 @@
     {
       "source": "/marketing-solutions/changelog/index",
       "destination": "/marketing-solutions/changelog/changelog"
+    },
+    {
+      "source": "/retail-media/experimental/docs/criteos-model-context-protocol-mcp",
+      "destination": "/mcp/docs/criteos-model-context-protocol-mcp"
+    },
+    {
+      "source": "/retail-media/experimental/docs/access-flows",
+      "destination": "/mcp/docs/access-flows"
+    },
+    {
+      "source": "/retail-media/experimental/docs/example-workflows",
+      "destination": "/mcp/docs/retail-media/example-workflows"
+    },
+    {
+      "source": "/retail-media/experimental/docs/mcp-troubleshooting",
+      "destination": "/mcp/docs/mcp-troubleshooting"
+    },
+    {
+      "source": "/retail-media/v2026-preview/docs/criteos-model-context-protocol-mcp",
+      "destination": "/mcp/docs/criteos-model-context-protocol-mcp"
+    },
+    {
+      "source": "/retail-media/v2026-preview/docs/access-flows",
+      "destination": "/mcp/docs/access-flows"
+    },
+    {
+      "source": "/retail-media/v2026-preview/docs/example-workflows",
+      "destination": "/mcp/docs/retail-media/example-workflows"
+    },
+    {
+      "source": "/retail-media/v2026-preview/docs/mcp-troubleshooting",
+      "destination": "/mcp/docs/mcp-troubleshooting"
     }
   ]
 }
