@@ -1,6 +1,6 @@
 ---
 title: Line Item Core
-description: Create and manage the line items that control how a campaign delivers ads.
+description: Create, retrieve, and manage the line items that control how a campaign delivers ads.
 ---
 
 import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
@@ -27,8 +27,191 @@ This endpoint replaces the following type-specific creation routes, which remain
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
+| `GET` | `/line-items/{lineItemId}` | Retrieve a consolidated view of a line item. |
 | `POST` | `/line-items` | Create a line-item core entity. |
 | `PATCH` | `/line-items/{lineItemId}` | Update an existing line item. |
+
+## Get a Line Item
+
+Retrieves a consolidated view of a line item: its core fields, targeting, ad content (products and creatives), and bidding settings.
+
+<EndpointBadge method="get">
+```http
+https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}
+```
+</EndpointBadge>
+
+### Path Parameters
+
+| Parameter | Description |
+| --- | --- |
+| `line-item-id` | The unique identifier of the line item to retrieve. |
+
+### Response Attributes
+
+All attributes below are nested under `data.attributes`.
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `core` | object | Core line item fields. Same shape as the `line-item` resource attributes returned by [Create](#create-a-line-item-core) and [Update](#update-a-line-item-core), always present when the request succeeds. |
+| `targeting` | object or null | Targets configured for the line item. See [Targeting](/retail-media/experimental/docs/line-item-targets#target-attributes) for the `targets[]` field descriptions. |
+| `adContent` | object or null | Ad content associated with the line item. Null only when both `products` and `creatives` are unavailable. |
+| `adContent.products` | object or null | Products in the line item's product pool. Same shape as the resource described in [Line Item Products](/retail-media/experimental/docs/line-item-products#request-attributes), with `approvalStatus` populated on each product. |
+| `adContent.creatives` | object or null | Creatives associated with the line item. |
+| `adContent.creatives.mediaType` | string or null | `Display` or `Video`. Null when not yet known. |
+| `adContent.creatives.creatives` | array | The line item's associated creatives. Empty when none are associated. |
+| `adContent.creatives.creatives[].creative.id` | string | ID of the creative. |
+| `adContent.creatives.creatives[].creative.modifiedAt` | string | When the creative revision currently associated with the line item was associated. |
+| `adContent.creatives.creatives[].approvalStatus` | string | Approval status of the creative associated to the line item. |
+| `adContent.creatives.creatives[].creativePreviewCode` | string or null | The Creative Live Demo preview code. Null if the retailer does not support this feature. |
+| `adContent.creatives.creatives[].creativeProductCollections` | array | The ordered product collections of the associated creative. See [Fetch Line Item Creatives](/retail-media/experimental/docs/line-item-creatives#fetch-line-item-creatives) for the collection and product field descriptions. |
+| `bidding` | object or null | Bidding settings for the line item. See [Bid Strategy Settings](/retail-media/experimental/docs/bidding-strategy-settings#response-attributes) for the `cpm` field descriptions. |
+
+**Sample Request**
+
+```bash
+curl -L -X GET \
+  'https://api.criteo.com/experimental/retail-media/line-items/112233445566778899' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer <MY_ACCESS_TOKEN>'
+```
+
+**Sample Response** — `200 OK`
+
+```json
+{
+  "data": {
+    "id": "112233445566778899",
+    "type": "LineItemDetails",
+    "attributes": {
+      "core": {
+        "lineItemId": "112233445566778899",
+        "type": "OnsiteDisplay",
+        "name": "Back-to-school display",
+        "isPaused": false,
+        "fundingStatus": "Funded",
+        "retailerId": "12345",
+        "campaignId": "987654321",
+        "effectiveFlightDates": {
+          "startDate": "2026-09-01T00:00:00Z",
+          "endDate": "2026-09-30T23:59:59Z"
+        },
+        "serveToOptOutUser": false,
+        "conquestingSettings": {
+          "conquestingAdStrategyEnabled": false,
+          "neutralAdStrategyEnabled": true,
+          "defensiveAdStrategyEnabled": true,
+          "isAdStrategyLocked": false
+        },
+        "onsiteDisplayDetails": {
+          "frequencyCapping": {
+            "cappingCount": 5,
+            "cappingDurationType": "Day"
+          },
+          "auctionDetails": {
+            "isDynamicMatch": true
+          }
+        }
+      },
+      "targeting": {
+        "targets": [
+          {
+            "targetType": "Category",
+            "negative": false,
+            "bidMultiplier": 1.5,
+            "approvalStatus": "Approved",
+            "categoryTargetDetails": {
+              "categoryId": "1001",
+              "includeChildren": true
+            }
+          }
+        ]
+      },
+      "adContent": {
+        "products": {
+          "productType": "DisplayProduct",
+          "displayProductDetails": [
+            {
+              "productId": "sku-12345",
+              "approvalStatus": "Approved"
+            }
+          ]
+        },
+        "creatives": {
+          "mediaType": "Display",
+          "creatives": [
+            {
+              "creative": {
+                "id": "123",
+                "modifiedAt": "2026-08-13T14:30:00Z"
+              },
+              "approvalStatus": "Approved",
+              "creativePreviewCode": "preview-code",
+              "creativeProductCollections": [
+                {
+                  "isMandatory": false,
+                  "products": [
+                    {
+                      "id": "sku-12345",
+                      "approvalStatus": "Approved"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "bidding": {
+        "cpm": {
+          "bidStrategy": "Adaptive",
+          "standardBiddingSettings": {
+            "auctionBids": [
+              {
+                "pageType": "Search",
+                "bid": 1.25
+              }
+            ]
+          },
+          "adaptiveBiddingSettings": {
+            "maxBid": 3.5
+          }
+        }
+      }
+    }
+  },
+  "warnings": []
+}
+```
+
+### Partial Availability
+
+`core` is always required: if it cannot be retrieved, the endpoint returns a non-`200` response with no `data`, forwarding the downstream error and status code unchanged.
+
+`targeting`, `adContent.products`, `adContent.creatives`, and `bidding` are independently optional:
+
+- If one of these is temporarily unavailable (for example, a downstream dependency failure), the response still returns `200 OK` with that attribute set to `null` and a warning appended to the top-level `warnings` array.
+- `adContent` itself is `null` only when both `products` and `creatives` are unavailable; if either succeeds, `adContent` is present with the other field set to `null`.
+- If a scope does not apply to the line item's type (for example, requesting creatives for a line item type that does not support them), the attribute is `null` **without** a warning, since the scope does not apply rather than being unavailable.
+
+| Warning Code | `instance` | Meaning |
+| --- | --- | --- |
+| `line-item-targeting-unavailable` | `@data/attributes/targeting` | Targeting could not be retrieved. |
+| `line-item-ad-content-products-unavailable` | `@data/attributes/adContent/products` | Products could not be retrieved. |
+| `line-item-ad-content-creatives-unavailable` | `@data/attributes/adContent/creatives` | Creatives could not be retrieved. |
+| `line-item-bidding-unavailable` | `@data/attributes/bidding` | Bidding settings could not be retrieved. |
+
+Clients should always inspect the `warnings` array, even on a `200 OK` response, since it can indicate that part of the consolidated view is incomplete.
+
+### Errors
+
+| HTTP status | Description |
+| --- | --- |
+| `401` | The caller is not authenticated. |
+| `403` | The line item does not exist, or the caller cannot access it. |
+| `5xx` | The core line item could not be retrieved; the error and status code are forwarded from the underlying service unchanged. |
+
+---
 
 ## Create a Line Item Core
 
