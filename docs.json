@@ -1333,6 +1333,7 @@
                             "root": "marketing-solutions/docs/reporting",
                             "pages": [
                               "marketing-solutions/docs/mpo-standard-reporting-api",
+                              "marketing-solutions/docs/mpo-product-level-reporting-api",
                               "marketing-solutions/docs/mpo-seller-reporting-api",
                               "marketing-solutions/docs/getting-realtime-mpo-statistics",
                               "marketing-solutions/docs/mpo-standard-reporting-api-metric-definitions"
