@@ -165,7 +165,9 @@ The resource `type` is `Products`. Unlike the add operation, products are suppli
 - Products are removed from the product pool only. They are not yet removed from Creative Product Collections that reference them; that behavior will follow.
 - Removing every product from a line item is allowed. The line item may stop being served as a result.
 
-**Sample Request**
+### Sample Request
+
+<Accordion title="Example request">
 
 ```json
 {
@@ -182,9 +184,13 @@ The resource `type` is `Products`. Unlike the add operation, products are suppli
 }
 ```
 
-**Sample Response**
+</Accordion>
 
-A successful call returns `200` with an empty outcome.
+### Sample Responses
+
+When all requested products are removed without warnings, the endpoint returns `200` with an empty outcome.
+
+<Accordion title="Example response (200)">
 
 ```json
 {
@@ -193,9 +199,33 @@ A successful call returns `200` with an empty outcome.
 }
 ```
 
+</Accordion>
+
+When one or more product IDs are not associated with the line item, the response includes a warning for each unmatched ID. Matching products are still removed.
+
+<Accordion title="Example response with warning (200)">
+
+```json
+{
+  "errors": [],
+  "warnings": [
+    {
+      "traceId": "unique-request-id",
+      "code": "unmatched-product-id",
+      "type": "validation",
+      "title": "unmatched-product-id",
+      "detail": "Product ID 'product-1' is not in the line item's product pool",
+      "instance": "@data/attributes/productIds/1"
+    }
+  ]
+}
+```
+
+</Accordion>
+
 The response does not list the products that were removed. To confirm the resulting state of the pool, read the line item's products with `GET /line-items/{lineItemId}/products`.
 
-**Sample Error Response**
+<Accordion title="Example error response (400)">
 
 ```json
 {
@@ -212,6 +242,8 @@ The response does not list the products that were removed. To confirm the result
   ]
 }
 ```
+
+</Accordion>
 
 ### Errors
 
