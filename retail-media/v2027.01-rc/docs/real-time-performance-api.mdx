@@ -27,7 +27,8 @@ Typical use-cases for this endpoint include, for example:
   * about **15 minute latency** from impression/click to availability in the API,
   * a maximum **7-day look back window,**
   * **Onsite campaign** coverage only,
-  * A focused set of metrics: `impressions`, `clicks`, `spend`.
+  * A focused set of metrics: `impressions`, `clicks`, `spend`,
+  * a default rate limit of **10 calls per minute**.
 </Info>
 
 <Warning>
@@ -389,6 +390,7 @@ Values in the `metrics` array must be selected from:
   Requests with `startDate` older than this limit are rejected with a 400 Bad Request.
 * **Time zone handling**: All date/hour-based dimensions (date, hour) are computed in the requested timezone.  
   If timezone is omitted, UTC is used.
+* **Rate limit**: By default, this endpoint is limited to **10 calls per minute**. This is stricter than the [standard rate limits](/criteo-apis/docs/rate-limits) that apply to other endpoints, including the other reporting endpoints (40 calls per minute). Requests above this limit are rejected with a 429 Too Many Requests.
 
 ***
 
@@ -829,6 +831,31 @@ echo $response->getBody();
    <td>
     <p>
      Check permissions
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     🔴
+     <code>
+      429
+     </code>
+    </p>
+   </td>
+   <td>
+    <p>
+     Too Many Requests
+    </p>
+   </td>
+   <td>
+    <p>
+     Rate limit exceeded (default 10 calls per minute for this endpoint)
+    </p>
+   </td>
+   <td>
+    <p>
+     Wait before retrying and reduce call frequency
     </p>
    </td>
   </tr>
