@@ -54,7 +54,6 @@ All attributes below are nested under `data.attributes`.
 | Attribute | Type | Description |
 | --- | --- | --- |
 | `core` | object | Core line item fields. Same shape as the `line-item` resource attributes returned by [Create](#create-a-line-item-core) and [Update](#update-a-line-item-core), always present when the request succeeds. |
-| `core.budgetStatus` | string | Whether the line item has budget headroom to serve ads: `BudgetAvailable`, `DailyBudgetReached`, `MonthlyBudgetReached`, `TotalBudgetReached` or `Unknown`. `Unknown` means the status could not be determined. |
 | `targeting` | object or null | Targets configured for the line item. See [Targeting](/retail-media/experimental/docs/line-item-targets#target-attributes) for the `targets[]` field descriptions. |
 | `adContent` | object or null | Ad content associated with the line item. Null only when both `products` and `creatives` are unavailable. |
 | `adContent.products` | object or null | Products in the line item's product pool. Same shape as the resource described in [Line Item Products](/retail-media/experimental/docs/line-item-products#request-attributes), with `approvalStatus` populated on each product. |
@@ -266,6 +265,15 @@ The resource `type` is `line-item`. Do not send response-only fields such as `li
 }
 ```
 
+### Response Attributes
+
+All attributes below are nested under `data.attributes`. Alongside the attributes accepted on creation, the response carries read-only fields such as the following enum fields.
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `type` | string | Type of line item: `SponsoredProduct` or `OnsiteDisplay`. |
+| `budgetStatus` | string | Whether the line item has budget headroom to serve ads: `BudgetAvailable`, `DailyBudgetReached`, `MonthlyBudgetReached`, `TotalBudgetReached` or `Unknown`. `Unknown` means the status could not be determined. |
+
 **Sample Response**
 
 ```json
@@ -375,6 +383,8 @@ The resource `type` is `line-item`. Do not send response-only fields such as `li
   }
 }
 ```
+
+The response attributes are the same as for [Create](#create-a-line-item-core).
 
 **Sample Response**
 
