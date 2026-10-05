@@ -7,15 +7,10 @@ description: "Add the Knowledge Agent MCP as a second endpoint to ground your ag
 
 The Knowledge Agent MCP is a second MCP server you add alongside your existing Criteo MCP connection. It grounds your agent's answers in approved Criteo product knowledge from the Criteo Support Center and API Developer Portal.
 
-It does not replace your existing MCP — it complements it:
-
-| Layer | Server | Role |
-| :---- | :----- | :--- |
-| Action / data | Your existing Criteo MCP | Creates campaigns, pulls reports, manages line items |
-| Knowledge | Knowledge Agent MCP | Explains how things work, answers how-to questions, interprets results |
+Your Marketing Solutions MCP or Retail Media MCP stays the action and data layer. The Knowledge Agent MCP is the knowledge layer.
 
 <Info>
-  If you are connected to more than one Criteo MCP, specify the `product` parameter in your prompt so the agent uses the right knowledge base. See [Product parameter](#product-parameter) below.
+  If you are integrated with more than one Criteo MCP, specify the `product` parameter in your prompt (e.g. "Commerce Max"). See [Product parameter](#product-parameter) below.
 </Info>
 
 ***
@@ -30,7 +25,7 @@ You keep your existing authentication. The Knowledge Agent MCP registers as an a
 https://mcp.criteo.com/criteo-knowledge/mcp
 ```
 
-Add it to your MCP client the same way you added your existing Criteo MCP connection. Refer to [Access Flows](/mcp/docs/access-flows) for the step-by-step process for Claude, ChatGPT, or other platforms.
+Register it as an additional MCP server alongside your existing Marketing Solutions MCP or Retail Media MCP. No separate authentication model is introduced. Refer to [Access Flows](/mcp/docs/access-flows) for the step-by-step process for Claude, ChatGPT, or other platforms.
 
 ***
 
@@ -46,14 +41,10 @@ Pass `product` in your prompt to direct the agent to the right knowledge base. T
 
 `Growth` is the default if `product` is omitted.
 
-**Example prompt:**
-
-> "Using product Max, explain how store targeting works for preferred line items."
-
 ***
 
 ## What the Knowledge Agent does
 
-- Grounds answers in approved content from the Criteo Support Center and API Developer Portal
+- Grounds answers in approved Criteo product knowledge from the Criteo Support Center and API Developer Portal
 - Provides product explanations, how-to guidance, and interpretation your agent uses alongside marketing data and actions
-- Stays read-only — all writes and data operations remain with your existing Criteo MCP
+- Your Marketing Solutions or Retail Media MCP stays the action and data layer
