@@ -41,6 +41,8 @@ Pass `product` in your prompt to direct the agent to the right knowledge base. T
 
 `Growth` is the default if `product` is omitted.
 
+To maintain context across a multi-turn conversation, pass the `session_id` returned in the first response back in subsequent calls. If omitted, each call starts a new session.
+
 ***
 
 ## What the Knowledge Agent does
