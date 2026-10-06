@@ -366,9 +366,9 @@ This endpoint does not support partial success. When one or more creative fail v
 | `400` | `invalid-creative-type` | The requested `creativeType` does not match the line item buy type, or its corresponding details object was not supplied. |
 | `400` | `creative-unavailable` | A creative is not available to the line item's account or retailer. |
 | `400` | `invalid-media-type` | The submitted creatives have different media types or do not match the line item's media type. |
-| `400` | `invalid-creative-product-collections` | creative product collections must be empty when the line item uses Dynamic Match. |
-| `400` | `invalid-product-collection` | A Creative Product Collection contains the same product ID more than once. |
+| `400` | `invalid-product-collection-products` | A Creative Product Collection contains the same product ID more than once. |
 | `400` | `invalid-product-id` | A Creative Product Collection contains a product that is not available in the retailer catalog. |
+| `400` | `product-collection-requirements-unmet` | A Creative Product Collection does not meet the creative's format requirements. |
 | `400` | `too-many-products` | Adding the referenced products would exceed the line item's 1,500-product limit. |
 | `400` | `too-many-creatives` | Adding the submitted creatives would exceed the line item's creative limit. Up to 20 creatives can be attached to an Onsite Display Auction line item. |
 | `400` | `unsupported-line-item-type` | The line item buy type is not currently supported. |
