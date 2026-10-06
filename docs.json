@@ -2414,6 +2414,7 @@
             "pages": [
               "mcp/docs/criteos-model-context-protocol-mcp",
               "mcp/docs/access-flows",
+              "mcp/docs/knowledge-agent-mcp",
               "mcp/docs/mcp-troubleshooting",
               {
                 "group": "Retail Media",
