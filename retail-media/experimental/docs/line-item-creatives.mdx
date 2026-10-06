@@ -98,7 +98,7 @@ A successful response returns a `200 OK`.
 
 </Accordion>
 
-When the line item has no associated creatives, `lineItemCreatives` is empty and `mediaType` is `null`:
+When the line item has no associated creatives, `creatives` is empty and `mediaType` is `null`:
 
 <Accordion title="Example response (200)">
 
@@ -210,7 +210,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/creat
 
 ### Request attributes
 
-The resource `type` is `Creatives`.
+The resource `type` is `UpsertLineItemCreativesInput`.
 
 | Attribute | Required | Description |
 | --- | --- | --- |
@@ -236,7 +236,7 @@ The resource `type` is `Creatives`.
 ```json
 {
   "data": {
-    "type": "Creatives",
+    "type": "UpsertLineItemCreativesInput",
     "attributes": {
       "creativeType": "AuctionCreative",
       "auctionCreativeDetails": {
@@ -304,7 +304,7 @@ A successful Upsert request returns a `200 OK`
 ```json
 {
   "data": {
-    "type": "Creatives",
+    "type": "UpsertLineItemCreatives",
     "attributes": {
       "mediaType": "Display",
       "auctionCreativeDetails": {
@@ -395,7 +395,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/creat
 
 ### Request attributes
 
-The resource `type` is `Creatives`.
+The resource `type` is `DeleteLineItemCreativesInput`.
 
 | Attribute | Required | Description |
 | --- | --- | --- |
@@ -408,7 +408,7 @@ The resource `type` is `Creatives`.
 ```json
 {
   "data": {
-    "type": "Creatives",
+    "type": "DeleteLineItemCreativesInput",
     "attributes": {
       "creativeIds": [
         "creativeId1",
