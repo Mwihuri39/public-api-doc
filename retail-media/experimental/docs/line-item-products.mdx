@@ -21,8 +21,8 @@ These endpoints replace the equivalent routes documented in [Promoted Products](
 
 | Experimental endpoint | Route it replaces |
 | --- | --- |
-| `POST /line-items/{lineItemId}/products/add` | `POST /line-items/{lineItemId}/products/append` |
-| `POST /line-items/{lineItemId}/products/delete` | `POST /line-items/{lineItemId}/products/delete` on stable versions |
+| `POST /line-items/{line-item-id}/products/add` | `POST /line-items/{line-item-id}/products/append` |
+| `POST /line-items/{line-item-id}/products/delete` | `POST /line-items/{line-item-id}/products/delete` on stable versions |
 
 <Warning>
   The removal route uses the same path on Experimental and on stable versions, but the request body is different. On `experimental`, send the `productIds` body described below. On a stable version, keep sending the array of promoted product resources documented in [Promoted Products](/retail-media/docs/promoted-products).
@@ -32,8 +32,8 @@ These endpoints replace the equivalent routes documented in [Promoted Products](
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| `POST` | `/line-items/{lineItemId}/products/add` | Add products to a line item's product pool. |
-| `POST` | `/line-items/{lineItemId}/products/delete` | Remove products from a line item's product pool. |
+| `POST` | `/line-items/{line-item-id}/products/add` | Add products to a line item's product pool. |
+| `POST` | `/line-items/{line-item-id}/products/delete` | Remove products from a line item's product pool. |
 
 ## Add Products to a Line Item
 
@@ -41,7 +41,7 @@ Adds one or more products to the product pool of an existing line item.
 
 <EndpointBadge method="post">
 ```http
-https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/products/add
+https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/products/add
 ```
 </EndpointBadge>
 
@@ -49,7 +49,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/product
 
 | Parameter | Required | Description |
 | --- | --- | --- |
-| `lineItemId` | Yes | External ID of the line item that owns the product pool. |
+| `line-item-id` | Yes | External ID of the line item that owns the product pool. |
 
 ### Request attributes
 
@@ -140,7 +140,7 @@ Removes one or more products from the product pool of an existing line item.
 
 <EndpointBadge method="post">
 ```http
-https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/products/delete
+https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/products/delete
 ```
 </EndpointBadge>
 
@@ -148,7 +148,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/product
 
 | Parameter | Required | Description |
 | --- | --- | --- |
-| `lineItemId` | Yes | External ID of the line item that owns the product pool. |
+| `line-item-id` | Yes | External ID of the line item that owns the product pool. |
 
 ### Request attributes
 
@@ -231,7 +231,7 @@ When one or more product IDs are not associated with the line item, the response
 
 </Accordion>
 
-The response does not list the products that were removed. To confirm the resulting state of the pool, read the line item's products with `GET /line-items/{lineItemId}/products`.
+The response does not list the products that were removed. To confirm the resulting state of the pool, read the line item's products with `GET /line-items/{line-item-id}/products`.
 
 <Accordion title="Example error response (400)">
 
@@ -245,7 +245,7 @@ The response does not list the products that were removed. To confirm the result
       "type": "validation",
       "title": "Products limit exceeded",
       "detail": "Payload limit exceeded: request contains 1501 products, exceeds max allowed 1500 per request.",
-      "instance": "/experimental/retail-media/line-items/{lineItemId}/products/delete"
+      "instance": "/experimental/retail-media/line-items/12345/products/delete"
     }
   ]
 }
