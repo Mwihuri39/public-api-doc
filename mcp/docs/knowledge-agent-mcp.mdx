@@ -9,15 +9,21 @@ The Knowledge Agent MCP is a second MCP server you add alongside your existing C
 
 Your Marketing Solutions MCP or Retail Media MCP stays the action and data layer. The Knowledge Agent MCP is the knowledge layer.
 
-<Info>
-  If you are integrated with more than one Criteo MCP, specify the `product` parameter in your prompt (e.g. "Commerce Max"). See [Product parameter](#product-parameter) below.
-</Info>
-
 ***
 
 ## Add the endpoint
 
 Register it as an additional MCP server alongside your existing Marketing Solutions MCP or Retail Media MCP — no separate credentials required.
+
+Use the product-scoped URL that matches the Criteo product you are working with:
+
+| Product | URL |
+| :------ | :-- |
+| Commerce Max / Retail Media | `https://mcp.criteo.com/criteo-knowledge/max/mcp` |
+| Commerce Growth / Marketing Solutions | `https://mcp.criteo.com/criteo-knowledge/growth/mcp` |
+| Commerce Grid | `https://mcp.criteo.com/criteo-knowledge/grid/mcp` |
+
+If you work across multiple products, use the generic endpoint and specify the product at prompt time (see [Product parameter](#product-parameter) below):
 
 ```
 https://mcp.criteo.com/criteo-knowledge/mcp
@@ -29,7 +35,7 @@ Refer to [Access Flows](/mcp/docs/access-flows) for the step-by-step setup on Cl
 
 ## Product parameter
 
-Pass `product` in your prompt to direct the agent to the right knowledge base. This is recommended when you have more than one Criteo MCP connected.
+When using the generic endpoint, pass `product` in your prompt to direct the agent to the right knowledge base.
 
 | Value | Knowledge base |
 | :---- | :------------- |
