@@ -8,13 +8,13 @@ The Product Reporting API provides product performance data for Marketplace Perf
 
 The API reports impressions, clicks, and cost. It does not provide conversion metrics or time-based breakdowns, and reports do not include the current day.
 
-For seller-level or campaign-level aggregated reporting, use the [MPO Standard Reporting API v2](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api). For lower-latency product monitoring, use the [MPO Real-Time Asynchronous API](https://developers.criteo.com/marketing-solutions/docs/getting-realtime-mpo-statistics).
+For seller-level or campaign-level aggregated reporting, use the [MPO Standard Reporting API](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api). For lower-latency product monitoring, use the [Real-Time Monitoring API](https://developers.criteo.com/marketing-solutions/experimental/docs/mpo-real-time-asynchronous-api).
 
 ## Comparing product and standard reporting
 
 Product reports include `impressions`, `clicks`, and `cost`.
 
-- `clicks` and `cost` values reconcile with the [MPO Standard Reporting API v2](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api).
+- `clicks` and `cost` values reconcile with the [MPO Standard Reporting API](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api).
 - `impressions` values may differ between the two APIs.
 
 Expect this difference when comparing product-level and standard reports.
@@ -43,9 +43,9 @@ Use the Product Reporting API to:
 - Review product impressions, clicks, and cost.
 - Filter performance by advertiser or ad set. You can also filter by marketing campaign; this filter is primarily useful for MPO Pro.
 
-For seller-level or campaign-level aggregated reporting, use the [MPO Standard Reporting API v2](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api).
+For seller-level or campaign-level aggregated reporting, use the [MPO Standard Reporting API](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api).
 
-For lower-latency product monitoring, use the [MPO Real-Time Asynchronous API](https://developers.criteo.com/marketing-solutions/docs/getting-realtime-mpo-statistics).
+For lower-latency product monitoring, use the [Real-Time Monitoring API](https://developers.criteo.com/marketing-solutions/experimental/docs/mpo-real-time-asynchronous-api).
 
 ## How it works
 
@@ -246,9 +246,9 @@ Duplicate dimension values are not allowed. Time dimensions are not supported. R
 
 | Metric | Type | Description |
 | --- | --- | --- |
-| `clicks` | integer | Clicks generated on the product during the reporting interval. Values reconcile with the MPO Standard Reporting API v2. |
-| `impressions` | integer | Number of impressions for the product during the reporting interval. Values may differ from the MPO Standard Reporting API v2. |
-| `cost` | double | Click-attributed cost in the advertiser’s local currency. Values reconcile with the MPO Standard Reporting API v2. |
+| `clicks` | integer | Clicks generated on the product during the reporting interval. Values reconcile with the MPO Standard Reporting API. |
+| `impressions` | integer | Number of impressions for the product during the reporting interval. Values may differ from the MPO Standard Reporting API. |
+| `cost` | double | Click-attributed cost in the advertiser’s local currency. Values reconcile with the MPO Standard Reporting API. |
 
 ## Errors and HTTP status codes
 
@@ -289,7 +289,7 @@ Duplicate dimension values are not allowed. Time dimensions are not supported. R
 
 ## Related documentation
 
-- [MPO Standard Reporting API v2](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api) — For aggregated campaign and seller reporting.
+- [MPO Standard Reporting API](https://developers.criteo.com/marketing-solutions/docs/mpo-standard-reporting-api) — For aggregated campaign and seller reporting.
 - [MPO reporting](https://developers.criteo.com/marketing-solutions/docs/reporting) — For reporting concepts, identifiers, time grains, and metric definitions.
 - [Latency in MPO](https://developers.criteo.com/marketing-solutions/docs/mpo-latency#standard-reporting) — For reporting data latency and processing delays.
 - [Authentication](https://developers.criteo.com/marketing-solutions/docs/authentication) — For generating and using API access tokens.
