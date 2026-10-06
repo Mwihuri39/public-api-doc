@@ -1682,10 +1682,15 @@
                     ]
                   },
                   {
-                    "group": "MarketPlace Outcome (MPO)",
+                    "group": "Marketplace Performance Outcomes",
                     "pages": [
-                      "marketing-solutions/experimental/docs/mpo-product-level-reporting-api",
-                      "marketing-solutions/experimental/docs/mpo-real-time-asynchronous-api"
+                      {
+                        "group": "Reporting",
+                        "pages": [
+                          "marketing-solutions/experimental/docs/mpo-product-level-reporting-api",
+                          "marketing-solutions/experimental/docs/mpo-real-time-asynchronous-api"
+                        ]
+                      }
                     ]
                   }
                 ]
