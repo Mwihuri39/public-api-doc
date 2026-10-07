@@ -15,9 +15,9 @@ For more information on creative discovery (including product collection require
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| `GET` | `/line-items/{lineItemId}/creatives` | Retrieve the creatives and creative product collections associated with a line item. |
-| `POST` | `/line-items/{lineItemId}/creatives/upsert` | Link creatives and creative product collections to a line item. |
-| `POST` | `/line-items/{lineItemId}/creatives/delete` | Remove linked creatives and their creative product collections from a line item. |
+| `GET` | `/line-items/{line-item-id}/creatives` | Retrieve the creatives and creative product collections associated with a line item. |
+| `POST` | `/line-items/{line-item-id}/creatives/upsert` | Link creatives and creative product collections to a line item. |
+| `POST` | `/line-items/{line-item-id}/creatives/delete` | Remove linked creatives and their creative product collections from a line item. |
 
 ## Fetch Line Item Creatives
 
@@ -25,7 +25,7 @@ Retrieve the creatives and associated creative product collections on an Onsite 
 
 <EndpointBadge method="get">
     ```http
-    https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/creatives
+    https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/creatives
     ```
 </EndpointBadge>
 
@@ -98,7 +98,7 @@ A successful response returns a `200 OK`.
 
 </Accordion>
 
-When the line item has no associated creatives, `lineItemCreatives` is empty and `mediaType` is `null`:
+When the line item has no associated creatives, `creatives` is empty and `mediaType` is `null`:
 
 <Accordion title="Example response (200)">
 
@@ -198,7 +198,7 @@ Existing line item creatives that are omitted from the request are unmodified.
 
 <EndpointBadge method="post">
 ```http
-https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/creatives/upsert
+https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/creatives/upsert
 ```
 </EndpointBadge>
 
@@ -210,7 +210,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/creativ
 
 ### Request attributes
 
-The resource `type` is `Creatives`.
+The resource `type` is `UpsertLineItemCreativesInput`.
 
 | Attribute | Required | Description |
 | --- | --- | --- |
@@ -236,7 +236,7 @@ The resource `type` is `Creatives`.
 ```json
 {
   "data": {
-    "type": "Creatives",
+    "type": "UpsertLineItemCreativesInput",
     "attributes": {
       "creativeType": "AuctionCreative",
       "auctionCreativeDetails": {
@@ -304,7 +304,7 @@ A successful Upsert request returns a `200 OK`
 ```json
 {
   "data": {
-    "type": "Creatives",
+    "type": "UpsertLineItemCreatives",
     "attributes": {
       "mediaType": "Display",
       "auctionCreativeDetails": {
@@ -366,9 +366,9 @@ This endpoint does not support partial success. When one or more creative fail v
 | `400` | `invalid-creative-type` | The requested `creativeType` does not match the line item buy type, or its corresponding details object was not supplied. |
 | `400` | `creative-unavailable` | A creative is not available to the line item's account or retailer. |
 | `400` | `invalid-media-type` | The submitted creatives have different media types or do not match the line item's media type. |
-| `400` | `invalid-creative-product-collections` | creative product collections must be empty when the line item uses Dynamic Match. |
-| `400` | `invalid-product-collection` | A Creative Product Collection contains the same product ID more than once. |
+| `400` | `invalid-product-collection-products` | A Creative Product Collection contains the same product ID more than once. |
 | `400` | `invalid-product-id` | A Creative Product Collection contains a product that is not available in the retailer catalog. |
+| `400` | `product-collection-requirements-unmet` | A Creative Product Collection does not meet the creative's format requirements. |
 | `400` | `too-many-products` | Adding the referenced products would exceed the line item's 1,500-product limit. |
 | `400` | `too-many-creatives` | Adding the submitted creatives would exceed the line item's creative limit. Up to 20 creatives can be attached to an Onsite Display Auction line item. |
 | `400` | `unsupported-line-item-type` | The line item buy type is not currently supported. |
@@ -383,7 +383,7 @@ Remove one or more creative, and associated creative product collections, from a
 
 <EndpointBadge method="post">
 ```http
-https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/creatives/delete
+https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/creatives/delete
 ```
 </EndpointBadge>
 
@@ -395,7 +395,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}/creativ
 
 ### Request attributes
 
-The resource `type` is `Creatives`.
+The resource `type` is `DeleteLineItemCreativesInput`.
 
 | Attribute | Required | Description |
 | --- | --- | --- |
@@ -408,7 +408,7 @@ The resource `type` is `Creatives`.
 ```json
 {
   "data": {
-    "type": "Creatives",
+    "type": "DeleteLineItemCreativesInput",
     "attributes": {
       "creativeIds": [
         "creativeId1",
