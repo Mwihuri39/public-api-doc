@@ -7,19 +7,30 @@ original_file: "to-migrate/criteo-dev-portal-full-export/merged_export/Performan
 import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
 
 <Warning>
-  **Important Data Usage Warning**
+**Important Data Usage Warning**
 
-  This data is generated in real time and is intended **only for real-time reporting purposes**. It is not subject to standard data cleaning practices (deduplication, quality checks) and **must not be used for pricing, bidding, invoicing, or any financial decision-making.**
+This data is generated in real time and is intended **only for real-time reporting purposes**. It is not subject to standard data cleaning practices (deduplication, quality checks) and **must not be used for pricing, bidding, invoicing, or any financial decision-making.**
 </Warning>
 
 <Warning>
-  **BETA Access**<br />The API is currently in **beta** and is only available to a limited list of clients onboarded by the Criteo technical team. You can find the reference for the endpoints mentioned in the page in [the **Preview** version](/marketing-solutions/v2026-preview/reference/analytics/get-realtime-product) of this documentation.
+**Usage and throttling warning**
+
+This API is designed for large-volume exports and asynchronous processing, not for many small synchronous queries. The documented workflow is to create a report job, poll for completion, and then download the generated file.
+
+Because report generation is intended for heavy queries that can return very large datasets, report creation is subject to a specific and limited hourly quota. To avoid unnecessary throttling and overhead, do not create many report jobs in parallel.
+
+When possible, prefer broader exports with limited filtering on the API side, store the data on your side, and then apply the filtering you need client-side. This usage pattern is more efficient and more stable than issuing many narrowly filtered requests in parallel.
+
+Also, when checking job status, do not poll more than once every 5 to 10 seconds to remain within rate limits.
+</Warning>
+     #
+<Warning>
+**BETA Access**<br />The API is currently in **beta** and is only available to a limited list of clients onboarded by the Criteo technical team. You can find the reference for the endpoints mentioned in the page in [the **Preview** version](/marketing-solutions/v2026-preview/reference/analytics/get-realtime-product) of this documentation.
 </Warning>
 
 ---
 
 ## Overview
-
 This API provides real-time reporting for **Marketplace Performance Outcomes (MPO)** via an asynchronous export workflow designed for large volumes of data.
 
 - **Data latency:** Approximately 10 minutes.
@@ -301,7 +312,27 @@ Violations yield `invalid-dimensioncombination`.
 
 ### HTTP status codes
 
+| HTTP | Meaning |
+| --- | --- |
+| 400 | Bad request (invalid syntax or validation error). |
+| 401 | Authentication failed (missing or expired token). |
+| 403 | Insufficient permissions, no campaign found in scope, or export job not found. |
+| 409 | Conflicting parameters, for example, an invalid combination of filters. |
+| 429 | Throttling limit reached. |
+| 500 | Internal server error. |
+
 ### Domain errors / validation errors
+
+| Code | Title / Description | Notes |
+| --- | --- | --- |
+| `insufficient-accountpermissions` | Insufficient account permissions | Caller lacks rights for specified advertisers. |
+| `invalid-query` | Invalid query definition | Missing required fields, unsupported dimensions or metrics, invalid time zone, or invalid IDs. |
+| `invalid-lookbackwindow` | Invalid lookback window | Outside 60–1440 minutes or combined with dates. |
+| `invalid-time-interval` | Invalid time interval definition | Dates combined with `lookbackWindow`; may be returned alongside `invalid-lookbackwindow`. |
+| `invalid-dimensioncombination` | Invalid combination of dimensions | Only one of `productId`, `hour`, or `minute` can be used per request. |
+| `unsupported-fileformat` | Unsupported file format | Only CSV and JSON are supported. |
+| `export-not-found` | Export job not found | The requested `reportId` does not exist or is not visible. |
+| `export-alreadyexpired` | Export already expired | The output has been permanently deleted. |
 
 ## What's next
 
