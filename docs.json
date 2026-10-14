@@ -128,7 +128,8 @@
                     "pages": [
                       "retail-media/docs/welcome-to-criteo",
                       "retail-media/docs/capability-map",
-                      "retail-media/docs/app-scopes"
+                      "retail-media/docs/app-scopes",
+                      "retail-media/docs/deprecated-endpoints"
                     ]
                   },
                   {
@@ -380,7 +381,8 @@
                     "group": "Introduction",
                     "pages": [
                       "retail-media/experimental/docs/introduction-to-experimental",
-                      "retail-media/experimental/docs/app-scopes"
+                      "retail-media/experimental/docs/app-scopes",
+                      "retail-media/experimental/docs/deprecated-endpoints"
                     ]
                   },
                   {
