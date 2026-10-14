@@ -1,6 +1,6 @@
 ---
 title: Line Item Products
-description: Add products to a line item's product pool, remove products from it, and read it back.
+description: Add products to a line item's product pool, remove products from it, and retrieve products from it.
 ---
 
 import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
@@ -94,7 +94,6 @@ The body's `data` is an array with one product resource per product to add. At l
 | `data[].type` | Yes | `LineItemProduct`. |
 | `data[].attributes.productType` | Yes | Type of the product. It must match the type of the target line item. Only `DisplayProduct` is currently supported. |
 | `data[].attributes.displayProductDetails` | Yes, for `DisplayProduct` | Send an empty object, `{}`. |
-| `data[].attributes.sponsoredProductDetails` | Yes, for `SponsoredProduct` | Not allowed when `productType` is `DisplayProduct`. |
 
 A single request accepts at most 1500 distinct products, and a line item's product pool holds at most 1500 products.
 
@@ -343,7 +342,7 @@ When one or more product IDs are not in the product pool, the response includes 
 
 | HTTP status | Code | Description |
 | --- | --- | --- |
-| `200` | `product-already-deleted` | Warning. A product ID is not in the product pool, or was already removed. Nothing is removed for that ID. |
+| `200` | `product-already-deleted` | Warning. A product ID is not in the product pool, or was already removed. Nothing is removed for that ID. Previously `unmatched-product-id`. |
 | `400` | `products-required` | `productIds` is missing or empty. No products are removed. |
 | `400` | `invalid-product-type` | `productType` is missing, unknown, or not yet supported, or it does not match the type of the target line item. |
 | `400` | `products-limit-exceeded` | More than 1500 distinct product IDs were supplied. No products are removed. |
