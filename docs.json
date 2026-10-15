@@ -1688,6 +1688,7 @@
                       {
                         "group": "Reporting",
                         "pages": [
+                          "marketing-solutions/experimental/docs/mpo-seller-reporting-api",
                           "marketing-solutions/experimental/docs/mpo-product-level-reporting-api",
                           "marketing-solutions/experimental/docs/mpo-real-time-asynchronous-api"
                         ]

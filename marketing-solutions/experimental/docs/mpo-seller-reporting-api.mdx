@@ -1,6 +1,6 @@
 ---
-title: Standard Reporting API v2
-sidebarTitle: Standard Reporting API v2
+title: Standard Reporting v2
+sidebarTitle: Standard Reporting v2
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ The API returns reports in CSV or JSON format and includes performance, sales, r
 - **Endpoint type:** This version provides synchronous reporting and returns the report in the same request.
 - **Row limit:** The synchronous endpoint supports up to 100,000 rows.
 - **Attribution windows:** The API provides predefined attribution windows. You cannot enter a custom attribution window.
-- **Data availability:** You can set `startDate` up to one year in the past. However, data for the new attribution-window metrics is available only from October 1, 2026. Requests covering dates before October 1, 2026 do not return data for these metrics.
+- **Data availability:** You can set `startDate` up to one year in the past. However, data for the new attribution-window metrics is available only from September 15, 2026. Requests covering dates before September 15, 2026 do not return data for these metrics.
 - **Required scope:** `MarketingSolutions_Analytics_Read`
 
 > **Important:** When you compare this API with Product stats, clicks and cost reconcile for overlapping metrics. Impression counts may differ for Native placements because not all Native impressions are currently reported.
