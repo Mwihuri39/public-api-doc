@@ -52,6 +52,17 @@ Before calling these endpoints, ensure the following are in place:
 - "This endpoint is expected to be promoted to stable in the [2027.01 release](/criteo-apis/docs/versioning-policy). The contract may change before then."
 - "There is currently no planned stable release date. Monitor the [changelog](/retail-media/docs/whats-new) for updates."]
 
+## Quick Start [OPTIONAL — include when the resource has a multi-step flow]
+
+[Walk the developer through the minimal sequence needed to have a working [resource]. Use numbered steps. Each step should name the call, show what input is required, and tell the developer which field from the response to carry into the next step. End with how to verify success.]
+
+1. **[Step one — e.g. Create a campaign]** — call `POST /[path]/campaigns` with `[required fields]`. Save the `id` from the response.
+2. **[Step two — e.g. Create a [resource]]** — call `POST /[path]/[resource]` with the `campaignId` from step 1 and `[other required fields]`. Save the `id`.
+3. **[Step three — e.g. Verify]** — call `GET /[path]/[resource]/{resourceId}` and confirm `status` is `[expected value]`.
+4. **[Cleanup — DELETE IF NOT APPLICABLE]** — call `DELETE /[path]/[resource]/{resourceId}` to remove test data.
+
+---
+
 ## Endpoints
 
 | Method | Endpoint | Description |
