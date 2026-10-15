@@ -10,14 +10,14 @@ import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
   Copy this file, rename it (no leading underscore), add it to docs.json under
   retail-media > experimental > Guides, and fill in each section.
 
-  Sections marked [DELETE IF NOT APPLICABLE] can be removed if the endpoint
-  has no path params, query params, or similar.
+  Sections marked [DELETE IF NOT APPLICABLE] can be removed when they don't apply.
+  Sections marked [OPTIONAL] should be included only when you have content for them.
 */}
 
 <Info>
   {/* Use this callout when the feature is experimental-only (no stable equivalent yet). */}
   This endpoint is available in the **Experimental** version of the Retail Media API only.
-  Experimental endpoints may change without prior notice. Check the [changelog](/retail-media/docs/whats-new) for updates.
+  Experimental endpoints may change without prior notice. See the [versioning policy](/criteo-apis/docs/versioning-policy) for details.
 </Info>
 
 {/*
@@ -37,14 +37,29 @@ import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
 and any key constraint or prerequisite the developer needs to know before calling any endpoint.
 Avoid repeating the description frontmatter word for word.]
 
+## Prerequisites
+
+Before calling these endpoints, ensure the following are in place:
+
+- **Authentication**: a valid access token. See [Authentication](/retail-media/experimental/docs/authentication).
+- **App permissions**: the `[ScopeName]` scope must be enabled on your app. See [App Scopes](/retail-media/experimental/docs/app-scopes).
+- **Account type**: [describe which account type is required — demand, supply, network, or any].
+- **[Other prerequisite]**: [e.g., a campaign must exist before creating a line item; describe the dependency and link to the relevant guide].
+
+## Road to Stable [OPTIONAL — include only if a timeline or intent is known]
+
+[Describe the graduation plan. Examples:
+- "This endpoint is expected to be promoted to stable in the [2027.01 release](/criteo-apis/docs/versioning-policy). The contract may change before then."
+- "There is currently no planned stable release date. Monitor the [changelog](/retail-media/docs/whats-new) for updates."]
+
 ## Endpoints
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| `POST` | `/accounts/{accountId}/[resource]` | [Short verb phrase.] |
-| `GET` | `/accounts/{accountId}/[resource]/{resourceId}` | [Short verb phrase.] |
-| `PATCH` | `/accounts/{accountId}/[resource]/{resourceId}` | [Short verb phrase.] |
-| `DELETE` | `/accounts/{accountId}/[resource]/{resourceId}` | [Short verb phrase.] |
+| `POST` | `/[path]/[resource]` | [Short verb phrase.] |
+| `GET` | `/[path]/[resource]/{resourceId}` | [Short verb phrase.] |
+| `PATCH` | `/[path]/[resource]/{resourceId}` | [Short verb phrase.] |
+| `DELETE` | `/[path]/[resource]/{resourceId}` | [Short verb phrase.] |
 
 ---
 
@@ -52,7 +67,7 @@ Avoid repeating the description frontmatter word for word.]
 
 <EndpointBadge method="post">
 ```http
-https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]
+https://api.criteo.com/experimental/retail-media/[path]/[resource]
 ```
 </EndpointBadge>
 
@@ -60,7 +75,7 @@ https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `[pathParam]` | string | Yes | [Description.] |
 
 ### Query Parameters [DELETE IF NOT APPLICABLE]
 
@@ -81,7 +96,7 @@ All attributes below are nested under `data.attributes`. The resource `type` is 
 **Sample Request**
 
 ```bash
-curl -L -X POST 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]' \
+curl -L -X POST 'https://api.criteo.com/experimental/retail-media/[path]/[resource]' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <MY_ACCESS_TOKEN>' \
   -d '{
@@ -117,7 +132,7 @@ curl -L -X POST 'https://api.criteo.com/experimental/retail-media/accounts/{acco
 
 <EndpointBadge method="get">
 ```http
-https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}
+https://api.criteo.com/experimental/retail-media/[path]/[resource]/{resourceId}
 ```
 </EndpointBadge>
 
@@ -125,7 +140,7 @@ https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `[pathParam]` | string | Yes | [Description.] |
 | `resourceId` | string | Yes | Identifier of the [resource] to retrieve. |
 
 ### Response Attributes
@@ -141,7 +156,7 @@ All attributes below are nested under `data.attributes`.
 **Sample Request**
 
 ```bash
-curl -L -X GET 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}' \
+curl -L -X GET 'https://api.criteo.com/experimental/retail-media/[path]/[resource]/{resourceId}' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer <MY_ACCESS_TOKEN>'
 ```
@@ -168,7 +183,7 @@ curl -L -X GET 'https://api.criteo.com/experimental/retail-media/accounts/{accou
 
 <EndpointBadge method="patch">
 ```http
-https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}
+https://api.criteo.com/experimental/retail-media/[path]/[resource]/{resourceId}
 ```
 </EndpointBadge>
 
@@ -178,7 +193,7 @@ PATCH is partial: include only the fields you want to change. Omitted fields are
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `[pathParam]` | string | Yes | [Description.] |
 | `resourceId` | string | Yes | Identifier of the [resource] to update. |
 
 ### Request Attributes
@@ -193,7 +208,7 @@ All attributes below are nested under `data.attributes`. The resource `type` is 
 **Sample Request**
 
 ```bash
-curl -L -X PATCH 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}' \
+curl -L -X PATCH 'https://api.criteo.com/experimental/retail-media/[path]/[resource]/{resourceId}' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <MY_ACCESS_TOKEN>' \
   -d '{
@@ -228,7 +243,7 @@ curl -L -X PATCH 'https://api.criteo.com/experimental/retail-media/accounts/{acc
 
 <EndpointBadge method="delete">
 ```http
-https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}
+https://api.criteo.com/experimental/retail-media/[path]/[resource]/{resourceId}
 ```
 </EndpointBadge>
 
@@ -236,17 +251,28 @@ https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `[pathParam]` | string | Yes | [Description.] |
 | `resourceId` | string | Yes | Identifier of the [resource] to delete. |
 
 **Sample Request**
 
 ```bash
-curl -L -X DELETE 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}' \
+curl -L -X DELETE 'https://api.criteo.com/experimental/retail-media/[path]/[resource]/{resourceId}' \
   -H 'Authorization: Bearer <MY_ACCESS_TOKEN>'
 ```
 
 **Sample Response** — `204 No Content`
+
+---
+
+## Known Limitations [DELETE IF NOT APPLICABLE]
+
+[List anything that is intentionally incomplete, not yet supported, or known to behave differently
+from the eventual stable contract. Examples:
+- "Search is not yet available for this resource."
+- "The `endDate` field is accepted but not enforced until [date/release]."
+- "Bulk operations are not supported; submit one request per [resource]."
+This section reassures developers that gaps are known, not bugs.]
 
 ---
 
