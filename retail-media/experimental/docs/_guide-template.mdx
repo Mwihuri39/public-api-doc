@@ -1,0 +1,258 @@
+---
+title: [Feature Name]
+description: [One sentence: what this resource is and what developers use it for.]
+---
+
+import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
+
+{/*
+  TEMPLATE — not published in the nav.
+  Copy this file, rename it (no leading underscore), add it to docs.json under
+  retail-media > experimental > Guides, and fill in each section.
+
+  Sections marked [DELETE IF NOT APPLICABLE] can be removed if the endpoint
+  has no path params, query params, or similar.
+*/}
+
+<Info>
+  {/* Use this callout when the feature is experimental-only (no stable equivalent yet). */}
+  This endpoint is available in the **Experimental** version of the Retail Media API only.
+  Experimental endpoints may change without prior notice. Check the [changelog](/retail-media/docs/whats-new) for updates.
+</Info>
+
+{/*
+  Use this callout instead of the one above when a stable equivalent already exists.
+
+  <Warning>
+    **These endpoints are available in the stable Retail Media API.** We recommend using
+    [Retail Media 2026.07](/retail-media/docs/welcome-to-criteo) instead of the experimental version.
+    In your API calls, replace `/experimental/` with `/2026-07/`, or `/2027-01/` for Release Candidates.
+    [Learn more about our versioning policy.](/retail-media/docs/versioning-policy)
+  </Warning>
+*/}
+
+## Overview
+
+[Describe what the resource or feature is. One short paragraph: what it represents, why it exists,
+and any key constraint or prerequisite the developer needs to know before calling any endpoint.
+Avoid repeating the description frontmatter word for word.]
+
+## Endpoints
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `POST` | `/accounts/{accountId}/[resource]` | [Short verb phrase.] |
+| `GET` | `/accounts/{accountId}/[resource]/{resourceId}` | [Short verb phrase.] |
+| `PATCH` | `/accounts/{accountId}/[resource]/{resourceId}` | [Short verb phrase.] |
+| `DELETE` | `/accounts/{accountId}/[resource]/{resourceId}` | [Short verb phrase.] |
+
+---
+
+## Create a [Resource]
+
+<EndpointBadge method="post">
+```http
+https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]
+```
+</EndpointBadge>
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+
+### Query Parameters [DELETE IF NOT APPLICABLE]
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `paramName` | string | No | [Description.] |
+
+### Request Attributes
+
+All attributes below are nested under `data.attributes`. The resource `type` is `[ResourceCreateModel]`.
+
+| Attribute | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | Yes | [Description. Include max length or allowed values if constrained.] |
+| `attributeTwo` | string | Yes | [Description.] |
+| `optionalAttribute` | string | No | [Description. State the default if one applies.] |
+
+**Sample Request**
+
+```bash
+curl -L -X POST 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <MY_ACCESS_TOKEN>' \
+  -d '{
+    "data": {
+      "type": "[ResourceCreateModel]",
+      "attributes": {
+        "name": "My [resource] name",
+        "attributeTwo": "value"
+      }
+    }
+  }'
+```
+
+**Sample Response** — `201 Created`
+
+```json
+{
+  "data": {
+    "id": "112233445566778899",
+    "type": "[ResourceModel]",
+    "attributes": {
+      "name": "My [resource] name",
+      "attributeTwo": "value",
+      "status": "active"
+    }
+  }
+}
+```
+
+---
+
+## Get a [Resource]
+
+<EndpointBadge method="get">
+```http
+https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}
+```
+</EndpointBadge>
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `resourceId` | string | Yes | Identifier of the [resource] to retrieve. |
+
+### Response Attributes
+
+All attributes below are nested under `data.attributes`.
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `name` | string | [Description.] |
+| `attributeTwo` | string | [Description.] |
+| `status` | string | [Description. List enum values if applicable.] |
+
+**Sample Request**
+
+```bash
+curl -L -X GET 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer <MY_ACCESS_TOKEN>'
+```
+
+**Sample Response** — `200 OK`
+
+```json
+{
+  "data": {
+    "id": "112233445566778899",
+    "type": "[ResourceModel]",
+    "attributes": {
+      "name": "My [resource] name",
+      "attributeTwo": "value",
+      "status": "active"
+    }
+  }
+}
+```
+
+---
+
+## Update a [Resource]
+
+<EndpointBadge method="patch">
+```http
+https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}
+```
+</EndpointBadge>
+
+PATCH is partial: include only the fields you want to change. Omitted fields are left unchanged.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `resourceId` | string | Yes | Identifier of the [resource] to update. |
+
+### Request Attributes
+
+All attributes below are nested under `data.attributes`. The resource `type` is `[ResourceUpdateModel]`.
+
+| Attribute | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | No | [Description.] |
+| `optionalAttribute` | string | No | [Description.] |
+
+**Sample Request**
+
+```bash
+curl -L -X PATCH 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <MY_ACCESS_TOKEN>' \
+  -d '{
+    "data": {
+      "type": "[ResourceUpdateModel]",
+      "attributes": {
+        "name": "Updated name"
+      }
+    }
+  }'
+```
+
+**Sample Response** — `200 OK`
+
+```json
+{
+  "data": {
+    "id": "112233445566778899",
+    "type": "[ResourceModel]",
+    "attributes": {
+      "name": "Updated name",
+      "attributeTwo": "value",
+      "status": "active"
+    }
+  }
+}
+```
+
+---
+
+## Delete a [Resource] [DELETE SECTION IF NOT APPLICABLE]
+
+<EndpointBadge method="delete">
+```http
+https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}
+```
+</EndpointBadge>
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `accountId` | string | Yes | Identifier of the account that owns the [resource]. |
+| `resourceId` | string | Yes | Identifier of the [resource] to delete. |
+
+**Sample Request**
+
+```bash
+curl -L -X DELETE 'https://api.criteo.com/experimental/retail-media/accounts/{accountId}/[resource]/{resourceId}' \
+  -H 'Authorization: Bearer <MY_ACCESS_TOKEN>'
+```
+
+**Sample Response** — `204 No Content`
+
+---
+
+## Error Codes [DELETE IF NOT APPLICABLE]
+
+| Code | HTTP Status | When It Occurs |
+| --- | --- | --- |
+| `resource-not-found` | `404` | The `resourceId` does not exist or the account does not have access to it. |
+| `invalid-state` | `400` | [Describe the invalid state condition.] |
