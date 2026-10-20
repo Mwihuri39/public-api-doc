@@ -84,9 +84,40 @@ Once the status is `Done`, this call returns the raw file bytes.
 
 _(\*) - Required_
 
-#### Dimensions
 
-#### Metrics
+### Dimensions
+
+Dimensions define the level of aggregation for the report.
+
+<Note>
+**Dimension combination constraint:** Only one of `productId`, `hour`, or `minute` can be included in a single request. Combining two or more of these will return an `invalid-dimension-combination` error.
+</Note>
+
+
+| Dimension | Type | Description |
+| :--- | :--- | :--- |
+| `advertiserId` | string | ID of the advertiser account. |
+| `partnerId` | string | ID of the partner account. |
+| `campaignId` | string | ID of the campaign (represents the ad set entity in MPO). |
+| `sellerId` | string | ID of the seller used across MPO APIs. |
+| `productId` | string | External item ID provided in the product feed. Mutually exclusive with `hour` and `minute`. |
+| `hour` | datetime | Start of the hourly bucket in ISO-8601 format (e.g. `2026-01-09T08:00:00Z`). Mutually exclusive with `productId` and `minute`. |
+| `minute` | datetime | Start of the minute bucket in ISO-8601 format (e.g. `2026-01-09T08:15:00Z`). Mutually exclusive with `productId` and `hour`. |
+
+### Metrics
+
+Metrics define the numerical values returned in the report.
+
+<Note>
+Real-Time Monitoring reports **displays** rather than deduplicated impressions. Displays measure individual ad rendering opportunities and do not directly reconcile with Standard Reporting impression figures.
+</Note>
+
+| Metric | Type | Description |
+| :--- | :--- | :--- |
+| `clicks` | integer | Number of clicks generated during the reporting interval. |
+| `displays` | integer | Number of ad display opportunities rendered during the reporting interval. |
+| `cost` | double | Total advertiser spend in the requested currency during the reporting interval. |
+
 
 ---
 
