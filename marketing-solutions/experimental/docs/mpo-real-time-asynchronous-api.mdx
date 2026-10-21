@@ -109,13 +109,13 @@ Dimensions define the level of aggregation for the report.
 Metrics define the numerical values returned in the report.
 
 <Note>
-Real-Time Monitoring reports **displays** rather than deduplicated impressions. Displays measure individual ad rendering opportunities and do not directly reconcile with Standard Reporting impression figures.
+Real-Time Monitoring reports **displays** as product-level exposure events, not banner-level serving events. When several products appear in one banner, each reported product contributes one display. At seller level, the display total is the sum of the product-level display values. These counts are conceptually similar to product-level impressions in Standard Reporting, although the two APIs may not cover exactly the same occurrences or channels.
 </Note>
 
 | Metric | Type | Description |
 | :--- | :--- | :--- |
 | `clicks` | integer | Number of clicks generated during the reporting interval. |
-| `displays` | integer | Number of ad display opportunities rendered during the reporting interval. |
+| `displays` | integer | Number of product-level exposure events during the reporting interval. Each reported product occurrence contributes one display. |
 | `cost` | double | Total advertiser spend in the requested currency during the reporting interval. |
 
 
