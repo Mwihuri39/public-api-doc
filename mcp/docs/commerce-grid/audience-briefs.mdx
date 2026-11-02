@@ -7,6 +7,8 @@ description: "Connect your agent to the Commerce Grid Audience Briefs MCP to res
 
 The Commerce Grid Audience Briefs MCP lets your AI application or agent work with Commerce Grid audience planning briefs. Your agent can research AI-recommended audience segments, review audience insights, create briefs, find existing briefs, and share them through a link.
 
+This is the MCP surface of the Commerce Grid **Audience Planner** — the planning tool in the Commerce Grid UI (Data tab) that turns a campaign brief into recommended audiences. It lets your agent create and review audience planning briefs programmatically instead of through the UI.
+
 Typical uses include:
 
 * **Researching audiences** for a campaign before committing to a brief
@@ -122,7 +124,7 @@ Returns AI-recommended audience segments based on campaign parameters, without c
 
 **`get_segment_insights`**
 
-Returns audience insights for a list of segments: UCs, brands, PCAs, genders, and buying power. Use it to analyze segments before deciding which ones to include in a brief.
+Returns audience insights for a list of segments across five dimensions: product categories (UCs, from the Universal Catalog), brands, publisher content categories (PCAs), gender, and buying power. Each insight is benchmarked against a country baseline with an affinity score. Use it to analyze segments before deciding which ones to include in a brief.
 
 <table>
   <colgroup>
@@ -151,7 +153,7 @@ Example `segmentsJson` value:
 
 ### Brief creation
 
-Both tools persist a new brief under the selected client. Use parameter values exactly as provided by the user — if a required value is missing, the agent should ask for it rather than infer it.
+Both tools persist a new brief under the selected client and return it, including the generated `briefId` (UUID) that `get_brief_by_id` and `share_brief` require. Use parameter values exactly as provided by the user — if a required value is missing, the agent should ask for it rather than infer it.
 
 <a id="create_brief" />
 
@@ -179,7 +181,7 @@ Creates and processes an audience planning brief from campaign details, then ret
     <tr><td><code>name</code></td><td>string</td><td>Yes</td><td>—</td><td>Name of the brief.</td></tr>
     <tr><td><code>brand</code></td><td>string</td><td>Yes</td><td>—</td><td>Brand name for the campaign.</td></tr>
     <tr><td><code>brief</code></td><td>string</td><td>Yes</td><td>—</td><td>Description of the campaign goals and target audience.</td></tr>
-    <tr><td><code>budget</code></td><td>number</td><td>Yes</td><td>—</td><td>Campaign budget in USD, e.g. <code>50000.00</code>.</td></tr>
+    <tr><td><code>budget</code></td><td>number</td><td>Yes</td><td>—</td><td>Campaign budget in US dollars, e.g. <code>50000.00</code>. Always USD, regardless of <code>countryCode</code> — there is no currency parameter.</td></tr>
     <tr><td><code>countryCode</code></td><td>string</td><td>Yes</td><td>—</td><td>Country code, e.g. <code>US</code>, <code>GB</code>, <code>FR</code>, <code>DE</code>.</td></tr>
     <tr><td><code>startDate</code></td><td>string</td><td>Yes</td><td>—</td><td>Campaign start date in <code>YYYY-MM-DD</code> format.</td></tr>
     <tr><td><code>endDate</code></td><td>string</td><td>Yes</td><td>—</td><td>Campaign end date in <code>YYYY-MM-DD</code> format.</td></tr>
@@ -212,7 +214,7 @@ Creates a brief with pre-selected segments, typically taken from `get_recommende
     <tr><td><code>name</code></td><td>string</td><td>Yes</td><td>—</td><td>Name of the brief.</td></tr>
     <tr><td><code>brand</code></td><td>string</td><td>Yes</td><td>—</td><td>Brand name for the campaign.</td></tr>
     <tr><td><code>description</code></td><td>string</td><td>Yes</td><td>—</td><td>Description of the campaign goals and target audience.</td></tr>
-    <tr><td><code>budget</code></td><td>number</td><td>Yes</td><td>—</td><td>Campaign budget in USD, e.g. <code>50000.00</code>.</td></tr>
+    <tr><td><code>budget</code></td><td>number</td><td>Yes</td><td>—</td><td>Campaign budget in US dollars, e.g. <code>50000.00</code>. Always USD, regardless of <code>countryCode</code> — there is no currency parameter.</td></tr>
     <tr><td><code>countryCode</code></td><td>string</td><td>Yes</td><td>—</td><td>Country code, e.g. <code>US</code>, <code>GB</code>, <code>FR</code>, <code>DE</code>.</td></tr>
     <tr><td><code>startDate</code></td><td>string</td><td>Yes</td><td>—</td><td>Campaign start date in <code>YYYY-MM-DD</code> format.</td></tr>
     <tr><td><code>endDate</code></td><td>string</td><td>Yes</td><td>—</td><td>Campaign end date in <code>YYYY-MM-DD</code> format.</td></tr>
@@ -342,12 +344,12 @@ Call `get_recommended_segments`, then `get_segment_insights` to explore and comp
 
 <Step title="Create the brief">
 
-Call `create_brief_with_segments` with the segments you selected, or `create_brief` to let the MCP recommend segments for you.
+Call `create_brief_with_segments` with the segments you selected, or `create_brief` to let the MCP recommend segments for you. The response includes the new brief's `briefId` — keep it for the next steps.
 </Step>
 
 <Step title="Review the brief">
 
-Call `query_briefs` or `get_brief_by_id` to find and review the brief.
+Call `get_brief_by_id` with the `briefId` from the previous step to review the full brief, or `query_briefs` to search by name, brand, country, or status when you do not have the ID.
 </Step>
 
 <Step title="Share the brief">
