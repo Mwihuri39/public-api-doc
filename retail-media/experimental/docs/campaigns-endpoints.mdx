@@ -153,7 +153,6 @@ The budget is the stored one: `spent` is `0` and `remaining` equals `amount`.
       "companyName": null,
       "onBehalfCompanyName": null,
       "billByRetailerId": null,
-      "budgetStatus": "BudgetAvailable",
       "createdAt": "2026-10-27T12:23:47.9648104+00:00",
       "updatedAt": "2026-10-27T12:23:47.9648104+00:00"
     }
@@ -205,7 +204,6 @@ All attributes below are nested under `data.attributes`.
 | `billByRetailerId` | string or null | Retailer billed. |
 | `companyName` | string or null | EU DSA. |
 | `onBehalfCompanyName` | string or null | EU DSA. |
-| `budgetStatus` | string or null | Whether the campaign has budget headroom to serve: `BudgetAvailable`, `DailyBudgetReached`, `MonthlyBudgetReached`, `TotalBudgetReached`, or `Unknown`. Null when status cannot be determined. |
 | `createdAt` | string | Creation time, UTC. |
 | `updatedAt` | string | Last update time, UTC. |
 
@@ -256,7 +254,6 @@ curl -L -X GET 'https://api.criteo.com/experimental/retail-media/campaigns/98765
       "companyName": null,
       "onBehalfCompanyName": null,
       "billByRetailerId": null,
-      "budgetStatus": "BudgetAvailable",
       "createdAt": "2026-10-27T12:23:47.9648104+00:00",
       "updatedAt": "2026-10-27T12:23:47.9648104+00:00"
     }
@@ -361,7 +358,6 @@ The response is a `CampaignModel`. It has the attributes of [Get a Campaign](#ge
       "companyName": null,
       "onBehalfCompanyName": null,
       "billByRetailerId": null,
-      "budgetStatus": "BudgetAvailable",
       "createdAt": "2026-10-27T12:23:47.9648104+00:00",
       "updatedAt": "2026-10-28T09:15:02.1203318+00:00"
     }
@@ -469,7 +465,6 @@ curl -L -X POST 'https://api.criteo.com/experimental/retail-media/accounts/12345
         "companyName": null,
         "onBehalfCompanyName": null,
         "billByRetailerId": null,
-        "budgetStatus": "BudgetAvailable",
         "createdAt": "2026-10-27T12:23:47.9648104+00:00",
         "updatedAt": "2026-10-27T12:23:47.9648104+00:00"
       }
