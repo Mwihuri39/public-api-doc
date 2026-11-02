@@ -5,23 +5,22 @@ description: Check whether line items can serve and identify the configuration i
 
 import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
 
+<Info>
+  This endpoint is available in the **Experimental** version of the Retail Media API only.
+  Experimental endpoints may change without prior notice. See the [versioning policy](/criteo-apis/docs/versioning-policy) for details.
+</Info>
+
 ## Overview
 
 Use the Line Item Diagnostics endpoint to check whether a line item is configured correctly. The response reports a status for each evaluated line item and, when requested, the configuration context, evaluated parameters, and issues that require attention.
-
-<Info>
-  **Availability: Coming soon**
-
-  This endpoint is documented ahead of availability in the Experimental Retail Media API.
-</Info>
 
 You can check one line item or a page of line items in one campaign. Your access token must be authorized to view the selected resource. See [Authentication](/retail-media/experimental/docs/authentication).
 
 ## Endpoint
 
-| Method | Endpoint | Description | Availability |
-| --- | --- | --- | --- |
-| `GET` | `/diagnostics/line-item-checks` | Get diagnostics for one line item or a page of a campaign's line items. | Coming soon |
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/diagnostics/line-item-checks` | Get diagnostics for one line item or a page of a campaign's line items. |
 
 ## Get Line Item Diagnostics
 
