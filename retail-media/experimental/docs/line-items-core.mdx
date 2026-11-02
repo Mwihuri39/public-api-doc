@@ -97,17 +97,7 @@ curl -L -X GET \
           "endDate": "2026-09-30T23:59:59Z"
         },
         "serveToOptOutUser": false,
-        "conquestingSettings": {
-          "conquestingAdStrategyEnabled": false,
-          "neutralAdStrategyEnabled": true,
-          "defensiveAdStrategyEnabled": true,
-          "isAdStrategyLocked": false
-        },
         "onsiteDisplayDetails": {
-          "frequencyCapping": {
-            "cappingCount": 5,
-            "cappingDurationType": "Day"
-          },
           "auctionDetails": {
             "isDynamicMatch": true
           }
@@ -343,8 +333,8 @@ https://api.criteo.com/experimental/retail-media/line-items/{lineItemId}
 | `name` | New display name. Must be unique within the campaign and contain 2–255 characters after trimming. |
 | `isPaused` | Set to `true` to pause the line item or `false` to unpause it. |
 | `serveToOptOutUser` | Whether ads can serve to users who opted out of personalization. |
-| `onsiteDisplayDetails.frequencyCapping` | Frequency-cap setting for an Onsite Display line item. Omit it to leave the cap unchanged; send `{ "value": null }` to remove the cap. |
-| `onsiteDisplayDetails.frequencyCapping.value.cappingCount` | Maximum number of times the ads may be shown within the selected duration. Must be from `1` to `20`; required when setting a cap. |
+| `onsiteDisplayDetails.frequencyCapping` | Frequency-cap setting for an Onsite Display line item. Omit to leave the cap unchanged; send `{ "value": null }` to remove the cap. |
+| `onsiteDisplayDetails.frequencyCapping.value.cappingCount` | Maximum number of times ads may be shown within the selected duration. From `1` to `20`; required when setting a cap. |
 | `onsiteDisplayDetails.frequencyCapping.value.cappingDurationType` | Period the count applies to: `Session` or `Day`. Required when setting a cap. |
 | `onsiteDisplayDetails.auctionDetails.isDynamicMatch` | Onsite Display Auction-specific. Determines whether to replace manual SKU curation by serving only products relevant to the page context. |
 
@@ -394,12 +384,6 @@ The response attributes are the same as for [Create](#create-a-line-item-core).
         "endDate": "2026-09-30T23:59:59Z"
       },
       "serveToOptOutUser": false,
-      "conquestingSettings": {
-        "conquestingAdStrategyEnabled": false,
-        "neutralAdStrategyEnabled": true,
-        "defensiveAdStrategyEnabled": true,
-        "isAdStrategyLocked": false
-      },
       "onsiteDisplayDetails": {
         "frequencyCapping": {
           "cappingCount": 5,

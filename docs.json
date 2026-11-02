@@ -393,7 +393,8 @@
                         "pages": [
                           "retail-media/experimental/docs/retailers",
                           "retail-media/experimental/docs/account-creation-management-third-party",
-                          "retail-media/experimental/docs/search-for-creatives"
+                          "retail-media/experimental/docs/search-for-creatives",
+                          "retail-media/experimental/docs/search-enriched-creatives"
                         ]
                       },
                       {
@@ -445,6 +446,7 @@
                               "retail-media/experimental/docs/line-item-creatives",
                               "retail-media/experimental/docs/line-item-products",
                               "retail-media/experimental/docs/line-item-submit",
+                              "retail-media/experimental/docs/line-item-diagnostics",
                               "retail-media/experimental/docs/bidding-strategy-settings",
                               "retail-media/experimental/docs/minimum-bid-details"
                             ]
@@ -492,7 +494,8 @@
                         "group": "Supply Side Analytics (SSP)",
                         "root": "retail-media/experimental/docs/supply-side-reporting-ssp",
                         "pages": [
-                          "retail-media/experimental/docs/fill-rate-report"
+                          "retail-media/experimental/docs/fill-rate-report",
+                          "retail-media/experimental/docs/metrics-dimensions-fill-rate-report"
                         ]
                       },
                       "retail-media/experimental/docs/deprecated-endpoints"
@@ -1592,7 +1595,6 @@
                             "root": "marketing-solutions/v2026.01/docs/reporting",
                             "pages": [
                               "marketing-solutions/v2026.01/docs/mpo-standard-reporting-api",
-                              "marketing-solutions/v2026.01/docs/getting-realtime-mpo-statistics",
                               "marketing-solutions/v2026.01/docs/mpo-standard-reporting-api-metric-definitions"
                             ]
                           },
@@ -1689,6 +1691,7 @@
                       {
                         "group": "Reporting",
                         "pages": [
+                          "marketing-solutions/experimental/docs/mpo-seller-reporting-api",
                           "marketing-solutions/experimental/docs/mpo-product-level-reporting-api",
                           "marketing-solutions/experimental/docs/mpo-real-time-asynchronous-api"
                         ]
