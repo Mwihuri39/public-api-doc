@@ -25,7 +25,6 @@ Retail Media API endpoints are protected by OAuth 2.0 scopes. Each endpoint requ
 | `RetailMedia_Billing_Read` | Read access to billing and partner reports |
 | `RetailMedia_Catalog_Manage` | Create and manage store inventory in the product catalog |
 | `RetailMedia_Catalog_Read` | Read access to store inventory and catalog data |
-| `RetailMedia_OnSiteRecommendation_Read` | Read access to on-site recommendation endpoints |
 | `RetailMedia_ThirdPartyAccounts_Manage` | Create and manage third-party account integrations |
 
 ***
@@ -147,12 +146,6 @@ Retail Media API endpoints are protected by OAuth 2.0 scopes. Each endpoint requ
 | Method | Endpoint | Required scope |
 | ------ | -------- | -------------- |
 | `GET` | `/experimental/retail-media/me` | `(none)` |
-
-### OnSiteRecommendation
-
-| Method | Endpoint | Required scope |
-| ------ | -------- | -------------- |
-| `POST` | `/experimental/retail-media/chatbot-catalogs/{catalogid}/product-recommendations` | `RetailMedia_OnSiteRecommendation_Read` |
 
 ### ThirdPartyAccounts
 
