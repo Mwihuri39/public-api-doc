@@ -53,7 +53,7 @@ All attributes below are nested under `data.attributes`.
 
 | Attribute | Type | Description |
 | --- | --- | --- |
-| `core` | object | Core line item fields. Same shape as the `line-item` resource attributes returned by [Update](#update-a-line-item-core), always present when the request succeeds. |
+| `core` | object | Core line item fields. Same shape as the `line-item` resource attributes returned by [Create](#create-a-line-item-core) and [Update](#update-a-line-item-core), always present when the request succeeds. |
 | `targeting` | object or null | Targets configured for the line item. See [Targeting](/retail-media/experimental/docs/line-item-targets#target-attributes) for the `targets[]` field descriptions. |
 | `adContent` | object or null | Ad content associated with the line item. Null only when both `products` and `creatives` are unavailable. |
 | `adContent.products` | object or null | Products in the line item's product pool. Same shape as the resource described in [Line Item Products](/retail-media/experimental/docs/line-item-products#request-attributes), with `approvalStatus` populated on each product. |
@@ -282,6 +282,7 @@ All attributes below are nested under `data.attributes`. Alongside the attribute
       },
       "serveToOptOutUser": false,
       "onsiteDisplayDetails": {
+        "frequencyCapping": null,
         "auctionDetails": {
           "isDynamicMatch": true
         }
