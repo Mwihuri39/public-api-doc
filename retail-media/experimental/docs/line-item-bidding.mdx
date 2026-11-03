@@ -9,12 +9,6 @@ import { EndpointBadge } from "/snippets/EndpointBadge.jsx";
 
 Use the Line Item Bidding endpoints to retrieve and set the bidding configuration of a line item.
 
-<Info>
-    **Availability: Available**
-
-  This endpoint is available in the Experimental Retail Media API.
-</Info>
-
 The endpoints support both Onsite Display Auction and Sponsored Product Auction line items.
 
 ## Endpoints
@@ -36,7 +30,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/biddi
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `line-item-id` | string | Yes | Identifier of the Onsite Display Auction or Sponsored Product Auction line item. |
+| `line-item-id` | string | Yes | The unique identifier of the line item to retrieve. |
 
 The authenticated user must have permission to view the requested line item.
 
@@ -96,7 +90,7 @@ https://api.criteo.com/experimental/retail-media/line-items/{line-item-id}/set-b
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `line-item-id` | string | Yes | Identifier of the Onsite Display Auction or Sponsored Product Auction line item. |
+| `line-item-id` | string | Yes | The unique identifier of the line item to retrieve. |
 
 The authenticated user must have permission to edit the requested line item.
 
