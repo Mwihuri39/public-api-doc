@@ -81,8 +81,8 @@ Results are ordered most recent first.
       "id": "89c63da6-22f8-4701-a7b5-a3e04b877387",
       "type": "ImportBasicInformation",
       "attributes": {
-        "merchantId": "5851",
-        "componentId": "31071",
+        "merchantId": "abc",
+        "componentId": "abcdefg",
         "ingestionType": "catalogImport",
         "ingestionStatus": "finished",
         "startTime": "2026-08-10T10:03:39.81",
@@ -131,12 +131,6 @@ https://api.criteo.com/2027-01/retail-media/catalog/ingestion/{ingestion-id}/rep
 
 In addition to all fields returned by the list endpoint, the summary report includes:
 
-**Merchant**
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `merchantName` | string | Display name of the merchant. |
-
 **Trigger**
 
 | Field | Type | Description |
@@ -167,7 +161,7 @@ In addition to all fields returned by the list endpoint, the summary report incl
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| `dataQuality.quality` | object | Quality outcome for the ingestion. Contains `qualityDecision` (`accepted`, `blocked`, or `overridden`), `score` (0–100), and `threshold` (minimum acceptable score). |
+| `dataQuality.quality` | object | Quality outcome for the ingestion. Contains `qualityDecision`: `accepted`, `blocked`, or `overridden`. |
 | `dataQuality.summary` | object | Aggregate counts of offers with errors and warnings. |
 | `dataQuality.errors` | object | Per-error-type counts of affected offers (e.g. `missingTitle`, `missingImageLink`, `missingPrice`, `invalidGtin`). |
 | `dataQuality.warnings` | object | Per-warning-type counts of affected offers (e.g. `missingGtin`, `missingMpn`, `missingBrand`, `missingGoogleProductCategory`). |
@@ -212,9 +206,8 @@ If an ingestion `failed` (as opposed to `blocked`), the `error` object (`error.c
     "id": "c78654d4-3df3-415c-b237-ab60cf5c1358",
     "type": "CatalogIngestionSummaryRecord",
     "attributes": {
-      "merchantId": "5535",
-      "merchantName": "Acme Retail",
-      "componentId": "29812",
+      "merchantId": "abc",
+      "componentId": "abcdefg",
       "trigger": { "type": "manual", "initiatedBy": "Criteo User" },
       "startTime": "2026-08-19T14:33:38.02Z",
       "endTime": "2026-08-19T15:07:43.4366667Z",
@@ -235,7 +228,7 @@ If an ingestion `failed` (as opposed to `blocked`), the `error` object (`error.c
         "unchangedOffers": 0
       },
       "dataQuality": {
-        "quality": { "qualityDecision": "accepted", "score": 87, "threshold": 70 },
+        "quality": { "qualityDecision": "accepted" },
         "errors": {
           "productsWithInvalidExternalId": 0,
           "productsWithInvalidSellerId": 0,
