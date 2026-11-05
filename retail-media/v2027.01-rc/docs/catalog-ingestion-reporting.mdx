@@ -131,6 +131,12 @@ https://api.criteo.com/2027-01/retail-media/catalog/ingestion/{ingestion-id}/rep
 
 In addition to all fields returned by the list endpoint, the summary report includes:
 
+**Merchant**
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `merchantName` | string | Display name of the merchant. |
+
 **Trigger**
 
 | Field | Type | Description |
@@ -161,7 +167,7 @@ In addition to all fields returned by the list endpoint, the summary report incl
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| `dataQuality.quality` | object | Quality decision for the ingestion. Contains `qualityDecision` (e.g. `accepted`). |
+| `dataQuality.quality` | object | Quality outcome for the ingestion. Contains `qualityDecision` (`accepted`, `blocked`, or `overridden`), `score` (0–100), and `threshold` (minimum acceptable score). |
 | `dataQuality.summary` | object | Aggregate counts of offers with errors and warnings. |
 | `dataQuality.errors` | object | Per-error-type counts of affected offers (e.g. `missingTitle`, `missingImageLink`, `missingPrice`, `invalidGtin`). |
 | `dataQuality.warnings` | object | Per-warning-type counts of affected offers (e.g. `missingGtin`, `missingMpn`, `missingBrand`, `missingGoogleProductCategory`). |
@@ -207,6 +213,7 @@ If an ingestion `failed` (as opposed to `blocked`), the `error` object (`error.c
     "type": "CatalogIngestionSummaryRecord",
     "attributes": {
       "merchantId": "5535",
+      "merchantName": "Acme Retail",
       "componentId": "29812",
       "trigger": { "type": "manual", "initiatedBy": "Criteo User" },
       "startTime": "2026-08-19T14:33:38.02Z",
@@ -228,7 +235,7 @@ If an ingestion `failed` (as opposed to `blocked`), the `error` object (`error.c
         "unchangedOffers": 0
       },
       "dataQuality": {
-        "quality": { "qualityDecision": "accepted" },
+        "quality": { "qualityDecision": "accepted", "score": 87, "threshold": 70 },
         "errors": {
           "productsWithInvalidExternalId": 0,
           "productsWithInvalidSellerId": 0,
